@@ -13,12 +13,39 @@ $.get('database/meta.yml', function(data) {
 	});
 }, "text");
 
-function renderDatabase() {
-	var list = $('<ul>');
+function renderDonationMethod(method) {
+	return method;
+}
 
-	items.forEach(function(item) {
-		$('<li>').text(item.name).appendTo(list);
+function renderDatabase() {
+	var table = $('<table>').append(
+		$('<tr>').append(
+			$('<th>').text('Project')
+		).append(
+			$('<th>').text('Donation methods')
+		).append(
+			$('<th>').text('Donate')
+		)
+	);
+
+	items.forEach(function(item, i) {
+		var tr_class = (i & 1) ? 'even' : 'odd';
+		$('<tr>').addClass(tr_class).append(
+			$('<td>').addClass("project-name").append(
+				$('<a>').prop('href', item.url).text(item.name)
+			)
+		).append(
+			$('<td>').addClass("donation-methods").prop('rowspan', 2).text(item.methods.sort().map(renderDonationMethod).join(', '))
+		).append(
+			$('<td>').addClass("donation-go").prop('rowspan', 2).append(
+				$('<a>').prop('href', item.donations || item.url).text('Donate')
+			)
+		).appendTo(table);
+
+		$('<tr>').addClass(tr_class).append(
+			$('<td>').addClass("project-description").text(item.comment)
+		).appendTo(table);
 	});
 
-	$("#items").empty().append(list);
+	$("#items").empty().append(table);
 }
