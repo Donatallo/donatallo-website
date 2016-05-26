@@ -35,7 +35,7 @@ function renderDatabase() {
 		).append(
 			$('<td>').addClass("column-donations").append(
 				item.methods.sort().map(function(method) {
-					return $('<div>').addClass('donation-method').addClass('button').text(method);
+					return $('<div>').addClass('donation-method').addClass('button').prop('title', method).text(method);
 				})
 			)
 		).append(
