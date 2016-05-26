@@ -1,0 +1,61 @@
+body {
+	font-family: sans-serif;
+}
+
+table {
+	border: 0px;
+	border-collapse: collapse;
+	margin: 0px auto;
+}
+
+th {
+	background: black;
+	color: white;
+}
+
+th:first-child {
+	border-radius: 0.75em 0 0 0;
+}
+
+th:last-child {
+	border-radius: 0 0.75em 0 0;
+}
+
+td {
+	padding: 0.5em;
+}
+
+.even {
+	background: #f7f5f3;
+}
+
+.odd {
+	background: #ffffff;
+}
+
+.column-donations {
+	text-align: center;
+}
+
+.column-go {
+	text-align: center;
+}
+
+.column-project p {
+	margin-top: 0.5em
+}
+
+.project-name {
+	font-weight: bold;
+	font-size: 120%;
+	margin-left: 1em;
+}
+
+a.project-name {
+	text-decoration: none;
+	color: black;
+}
+
+a.project-name:hover {
+	text-decoration: underline;
+}
