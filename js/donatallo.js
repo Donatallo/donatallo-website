@@ -14,7 +14,7 @@ $.get('database/meta.yml', function(data) {
 }, "text");
 
 function renderDonationMethod(method) {
-	return method;
+	return $('<div>').addClass('donation-method').text(method);
 }
 
 function renderDatabase() {
@@ -37,7 +37,7 @@ function renderDatabase() {
 				$('<p>').addClass("project-comment").text(item.comment)
 			)
 		).append(
-			$('<td>').addClass("column-donations").text(item.methods.sort().map(renderDonationMethod).join(', '))
+			$('<td>').addClass("column-donations").append(item.methods.sort().map(renderDonationMethod))
 		).append(
 			$('<td>').addClass("column-go").append(
 				$('<a>').prop('href', item.donations || item.url).text('Donate')
