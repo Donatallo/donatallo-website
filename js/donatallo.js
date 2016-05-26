@@ -31,19 +31,17 @@ function renderDatabase() {
 	items.forEach(function(item, i) {
 		var tr_class = (i & 1) ? 'even' : 'odd';
 		$('<tr>').addClass(tr_class).append(
-			$('<td>').addClass("project-name").append(
-				$('<a>').prop('href', item.url).text(item.name)
+			$('<td>').addClass("column-project").append(
+				$('<a>').addClass("project-name").prop('href', item.url).text(item.name)
+			).append(
+				$('<p>').addClass("project-comment").text(item.comment)
 			)
 		).append(
-			$('<td>').addClass("donation-methods").prop('rowspan', 2).text(item.methods.sort().map(renderDonationMethod).join(', '))
+			$('<td>').addClass("column-donations").text(item.methods.sort().map(renderDonationMethod).join(', '))
 		).append(
-			$('<td>').addClass("donation-go").prop('rowspan', 2).append(
+			$('<td>').addClass("column-go").append(
 				$('<a>').prop('href', item.donations || item.url).text('Donate')
 			)
-		).appendTo(table);
-
-		$('<tr>').addClass(tr_class).append(
-			$('<td>').addClass("project-description").text(item.comment)
 		).appendTo(table);
 	});
 
