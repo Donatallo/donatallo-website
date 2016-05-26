@@ -83,6 +83,7 @@ a.project-name:hover {
 a.button {
 	color: #fff;
 	padding: 0.5em 1em;
+	text-decoration: none;
 }
 
 a.button:hover, a.button:active {
