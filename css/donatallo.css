@@ -103,8 +103,10 @@ a.button {
 	text-decoration: none;
 }
 
+a.button:visited {
+	background: #2a6496;
+}
+
 a.button:hover, a.button:active {
-	color: #fff;
-	padding: 0.5em 1em;
 	background: #2a6496;
 }
