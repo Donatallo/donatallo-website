@@ -5,7 +5,7 @@ var projects = [];
 loadDatabase('database');
 
 function loadDatabase(path) {
-	$.get(path + '/meta.yml', function(data) {
+	$.get(path + '/meta.yaml', function(data) {
 		var metadata = jsyaml.load(data);
 		metadata.methods.forEach(function(file) {
 			methods_not_yet_loaded++;
