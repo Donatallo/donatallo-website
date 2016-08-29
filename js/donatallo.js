@@ -39,9 +39,9 @@ function renderDatabase() {
 		$('<tr>').append(
 			$('<th>').text('Project')
 		).append(
-			$('<th>').text('Methods')
+			$('<th>').text('Donation methods')
 		).append(
-			$('<th>').text('Donate')
+			$('<th>')
 		)
 	);
 
@@ -66,7 +66,7 @@ function renderDatabase() {
 			)
 		).append(
 			$('<td>').addClass("column-go").append(
-				$('<a>').prop('href', item.donations || item.url).addClass('button').text('Goto')
+				$('<a>').prop('href', item.donations || item.url).addClass('button').text('Donate')
 			)
 		).appendTo(table);
 	});
