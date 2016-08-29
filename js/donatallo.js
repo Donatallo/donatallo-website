@@ -39,7 +39,7 @@ function renderDatabase() {
 		$('<tr>').append(
 			$('<th>').text('Project')
 		).append(
-			$('<th>').text('Donation methods')
+			$('<th>').text('Donations')
 		).append(
 			$('<th>')
 		)
