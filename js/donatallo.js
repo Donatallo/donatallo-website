@@ -46,8 +46,7 @@ function renderDatabase() {
 	);
 
 	projects.forEach(function(item, i) {
-		var tr_class = (i & 1) ? 'odd' : 'even';
-		$('<tr>').addClass(tr_class).append(
+		$('<tr>').append(
 			$('<td>').addClass("column-project").append(
 				$('<a>').addClass("project-name").prop('href', item.url).text(item.name)
 			).append(

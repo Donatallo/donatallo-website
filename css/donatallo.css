@@ -10,6 +10,14 @@ table {
 	margin: 0px auto;
 }
 
+tr:nth-child(even) {
+	background: #f7f5f3;
+}
+
+tr:nth-child(odd) {
+	background: #ffffff;
+}
+
 th {
 	vertical-align: bottom;
 	border-bottom: 2px solid #ddd;
@@ -29,14 +37,6 @@ a:link, a:visited {
 a:hover {
 	text-decoration: underline;
 	color: #2a6496;
-}
-
-.even {
-	background: #f7f5f3;
-}
-
-.odd {
-	background: #ffffff;
 }
 
 .column-donations {
