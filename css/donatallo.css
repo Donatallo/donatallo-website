@@ -76,6 +76,14 @@ a.project-name:hover {
 	word-break: break-all;
 }
 
+.icon-placeholder {
+	background: #fbfbfb;
+	color: #fff;
+	border-radius: 0.33em;
+	padding: 0.25em;
+	margin: 0.25em;
+}
+
 .button {
 	background: #428bca;
 	color: #fff;

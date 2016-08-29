@@ -1,17 +1,38 @@
-// Items array
-var items = [];
+var methods = {};
+var methods_not_yet_loaded = 0;
+var projects = [];
 
-// Load database recursively
-$.get('database/meta.yml', function(data) {
-	jsyaml.load(data).files.forEach(function(file) {
-		$.get('database/' + file, function(itemdata) {
-			items = items.concat(jsyaml.load(itemdata)).sort(function(a, b) {
-				return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
-			});
-			renderDatabase();
-		}, "text");
+loadDatabase('database');
+
+function loadDatabase(path) {
+	$.get(path + '/meta.yml', function(data) {
+		var metadata = jsyaml.load(data);
+		metadata.methods.forEach(function(file) {
+			methods_not_yet_loaded++;
+			$.get(path + '/' + file, function(data) {
+				processMethods(data);
+				if (--methods_not_yet_loaded == 0) {
+					metadata.projects.forEach(function(file) {
+						$.get(path + '/' + file, processProjects, "text");
+					});
+				}
+			}, "text");
+		});
+	}, "text");
+}
+
+function processMethods(data) {
+	jsyaml.load(data).forEach(function(method) {
+		methods[method.keyword] = method;
 	});
-}, "text");
+}
+
+function processProjects(data) {
+	projects = projects.concat(jsyaml.load(data)).sort(function(a, b) {
+		return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+	});
+	renderDatabase();
+}
 
 function renderDatabase() {
 	var table = $('<table>').append(
@@ -24,7 +45,7 @@ function renderDatabase() {
 		)
 	);
 
-	items.forEach(function(item, i) {
+	projects.forEach(function(item, i) {
 		var tr_class = (i & 1) ? 'odd' : 'even';
 		$('<tr>').addClass(tr_class).append(
 			$('<td>').addClass("column-project").append(
@@ -35,9 +56,16 @@ function renderDatabase() {
 		).append(
 			$('<td>').addClass("column-donations").append(
 				item.methods.sort().map(function(method) {
-					return $('<div>').addClass('donation-method').addClass('button').prop('title', method).append(
-						$('<div>').addClass('donation-method-desc').text(method)
-					);
+					var inside;
+					if (typeof methods[method].icon === 'undefined') {
+						return $('<div>').addClass('donation-method').addClass('button').prop('title', methods[method].name).append(
+							$('<div>').addClass('donation-method-desc').text(methods[method].name)
+						);
+					} else {
+						return $('<div>').addClass('donation-method').addClass('button').prop('title', methods[method].name).append(
+							$('<img>').prop('src', 'database/' + methods[method].icon).prop('width', '32').prop('height', '32')
+						);
+					}
 				})
 			)
 		).append(
