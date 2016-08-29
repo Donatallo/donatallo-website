@@ -57,11 +57,10 @@ function renderDatabase() {
 				item.methods.sort().map(function(method) {
 					var inside;
 					if (typeof methods[method].icon === 'undefined') {
-						inside = $('<div>').addClass('donation-method-desc').text(methods[method].name);
+						return $('<div>').addClass('donation-method').prop('title', methods[method].name).text(methods[method].name);
 					} else {
-						inside = $('<img>').prop('src', 'database/' + methods[method].icon).prop('width', '32').prop('height', '32');
+						return $('<img>').addClass('donation-method').prop('src', 'database/' + methods[method].icon);
 					}
-					return $('<div>').addClass('donation-method').prop('title', methods[method].name).append(inside);
 				})
 			)
 		).append(
