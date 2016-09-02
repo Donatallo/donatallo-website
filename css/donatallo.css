@@ -1,6 +1,5 @@
 body {
 	font-family: sans-serif;
-	font-size: 12px;
 	color: #333;
 }
 
@@ -64,6 +63,11 @@ a.project-name:hover {
 	text-decoration: underline;
 }
 
+div.donation-method {
+	border-radius: 0.33em;
+	background: #428bca;
+}
+
 .donation-method {
 	display: inline-block;
 	width: 32px;
@@ -71,9 +75,10 @@ a.project-name:hover {
 	overflow: hidden;
 	margin: 0.25em;
 
-	color: #000;
-	font-size: 60%;
+	color: #ffffff;
+	font-size: 10px;
 	word-break: break-all;
+	text-align: center;
 }
 
 .icon-placeholder {
