@@ -34,6 +34,17 @@ function processProjects(data) {
 	renderDatabase();
 }
 
+function getMethodIcon(method) {
+	var element;
+	if (typeof methods[method].icon === 'undefined') {
+		element = $('<div>').text(methods[method].name);
+	} else {
+		element = $('<img>').prop('src', 'database/' + methods[method].icon);
+	}
+
+	return element.addClass('donation-method').prop('title', methods[method].name);
+}
+
 function renderDatabase() {
 	var table = $('<table>').append(
 		$('<tr>').append(
@@ -54,14 +65,7 @@ function renderDatabase() {
 			)
 		).append(
 			$('<td>').addClass("column-donations").append(
-				item.methods.sort().map(function(method) {
-					var inside;
-					if (typeof methods[method].icon === 'undefined') {
-						return $('<div>').addClass('donation-method').prop('title', methods[method].name).text(methods[method].name);
-					} else {
-						return $('<img>').addClass('donation-method').prop('src', 'database/' + methods[method].icon);
-					}
-				})
+				item.methods.sort().map(getMethodIcon)
 			)
 		).append(
 			$('<td>').addClass("column-go").append(
